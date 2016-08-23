@@ -1,0 +1,61 @@
+* {
+	margin:0;
+	padding:0;
+	border:0;
+	outline:0;
+}
+body {
+	font-family:Roboto;
+	font-size:60px;
+	background:#E9E9E9;
+	.slide {
+		text-align:left;
+	    width: 1400px;
+	    height: 700px;
+	    padding: 40px 60px;
+	    h1,
+	    h2,
+	    h3,
+	    h4,
+	    h5,
+	    h6 {
+	    	font-size:90px;
+	    }
+	   	strong,
+	   	span,
+	   	p {
+	   		margin:0;
+	   		font-size:40px;
+	   	}
+		span {
+			font-weight:300;
+		}
+		strong {
+			font-weight:600;
+		}
+		code {
+			&,
+			* {
+				font-size: 35px;
+			    line-height: 15px;
+			}
+		}
+	    &#welcome {
+ 			p {
+				font-size:120px;
+				strong {
+					font-size:200px;
+				}
+			}
+			span {
+				font-size:50px;
+			}
+	    }
+	}
+}
+.text-center {
+	text-align:center;
+}
+.code {
+
+}

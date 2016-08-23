@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>EcmaScript 2015 (es6)</title>
+	<link rel="stylesheet" href="css/presentation.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i|Roboto" rel="stylesheet">
+	<link rel="stylesheet" href="lib/highlight/styles/zenburn.css">
+</head>
+<body>
+	<div id="impress">
+		<div id="welcome" class="step slide" data-x="0" data-y="0" >
+			<p>Hello <span>and</span></p>
+			<p>welcome <span>to</span></p>
+			<p><strong>ES6</strong></p>
+			<p>presentation</p>
+		</div>
+		<div id="declaration" class="step slide" data-x="-1500" data-y="-1500" data-z="0" data-rotate-x="0" data-rotate-y="10">
+			<h2>Variables declaration</h2>
+			<pre>
+				<code class="javascript">
+					<div>let it = 'be';</div>
+					<div>const PI = '3.14...'</div>
+					<div>[a,b,c] = [1,2,3];</div>
+					<div>{a,b,c} = {a:1,b:2,c:3}</div>
+				</code>
+			</pre>
+		</div>
+		<div id="let" class="step slide" data-x="-3000" data-y="-3000" data-z="0" data-rotate-x="0" data-rotate-y="20">
+			<h2>Declaration "let"</h2>
+			<p><span>In <strong>ES6</strong> it is possible to create local scoped variables</span></p>
+			<pre>
+				<code class="javascript">
+					<div>let a = false;</div>
+					<div>if(true) {</div>
+					<div>  let a = true;</div>
+					<div>  console.log(a); // a === true</div>
+					<div>}</div>
+					<div>console.log(a); // a === false</div>
+				</code>
+			</pre>
+		</div>
+		<div id="const" class="step slide" data-x="-4500" data-y="-4500" data-z="0" data-rotate-x="0" data-rotate-y="30">
+			<h2>Declaration "const"</h2>
+			<p><span>Create <strong>CONSTANT</strong> values that cannot be changed by any cost</span></p>
+			<pre>
+				<code class="javascript">
+					<div>const EARTH = {'name':'earth', 'population':'9 billion'};</div>
+					<div>function destroyPlanet(planet){</div>
+					<div>	planet = undefined;</div>
+					<div>}</div>
+					<div>try {</div>
+					<div>	destroyPlanet(EARTH);</div>
+					<div>} catch (error) {</div>
+					<div>	console.log(error); // We're saved, for now...</div>
+					<div>}</div>
+				</code>
+			</pre>
+		</div>
+		<div id="array-matching" class="step slide" data-x="-6000" data-y="-6000" data-z="0" data-rotate-x="0" data-rotate-y="40">
+			<h2>Destructuring assignment "Array Matching"</h2>
+			<p>Now <strong>that</strong> is a thing</p>
+			<pre>
+				<code class="javascript">
+					<div>let list = [1,2,3];</div>
+					<div>[a,b,c=14,d=15] = list; // That's weird</div>
+					<div>console.log(a); // a = 1</div>
+					<div>console.log(b); // b = 2</div>
+					<div>console.log(c); // b = 3</div>
+					<div>console.log(d); // d = 15</div>
+				</code>
+			</pre>
+		</div>
+		<div id="object-matching" class="step slide" data-x="-7500" data-y="-7500" data-z="0" data-rotate-x="0" data-rotate-y="40">
+			<h2>Destructuring assignment "Object Matching"</h2>
+			<p>Can you figure out the <strong>logic</strong> ?</p>
+			<pre>
+				<code class="javascript">
+					<div>let object = {property:'value', foo:'bar'};</div>
+					<div>[a,b] = object;</div>
+					<div>console.log(a) // a = 'value'</div>
+					<div>console.log(b) // b = 'bar'</div>
+				</code>
+			</pre>
+		</div>
+		<div id="functions" class="step slide" data-x="1500" data-y="1500" data-rotate-y="10">
+			<h2>Functions</h2>
+			<p>You are floated with options</p>
+			<pre>
+				<code class="javascript">
+					<div>() => {}</div>
+					<div>name => {console.log(name+'says : "hi!"')}</div>
+					<div>(a, ...rest) => {return Boolean(...rest.forEach)}</div>
+					<div>let pow = (a=1,b=1) => {return a^b}</div>
+					<div>[1].reduce((a,b)=>{return a+b})</div>
+				</code>
+			</pre>
+		</div>
+		<div id="block-scoped-functions" class="step slide" data-x="3000" data-y="3000" data-rotate-y="20">
+			<h2>Block-scoped functions</h2>
+			<p>Does not work in some browsers without 'use strict'</p>
+			<pre>
+				<code class="javascript">
+					<div>function condition(arg) {return Boolean(arg)};</div>
+					<div>{</div>
+					<div>	function condition(arg) {return !Boolean(arg)}</div>
+					<div>}</div>
+					<div>console.log(condition(1)); // true</div>
+				</code>
+			</pre>
+		</div>
+		<div id="expression-bodies" class="step slide" data-x="4500" data-y="4500" data-rotate-y="30">
+			<h2>Expression Bodies and Statement bodies</h2>
+			<p><span>Big deal actually</span></p>
+			<pre>
+				<code class="javascript">
+					<div>let fn = () => {return true} // fn() -> true</div>
+					<div>let fn = a => {return a^2} // fn(2) -> 4</div>
+					<div>let fn = (a=1) => {return a^2} // fn() -> 1</div>
+					<div>[1,2,3,4,5].reduce((a,b)=>{return a+b}) // -> 15</div>
+					<div>let fn (a,...rest) => {return a.call(null, rest)}</div> 
+					<div>// fn(array=>{return array.length}, [1,2,3,4,5]) -> 5</div> 
+				</code>
+			</pre>
+		</div>
+		<div id="Statement-bodies" class="step slide" data-x="6000" data-y="6000" data-rotate-y="40">
+			<h2>Statement bodies</h2>
+			<pre>
+				<code class="javascript">
+					<div>function condition(arg) {return Boolean(arg)};</div>
+					<div>{</div>
+					<div>	function condition(arg) {return !Boolean(arg)}</div>
+					<div>}</div>
+					<div>console.log(condition(1)); // true</div>
+				</code>
+			</pre>
+		</div>
+		<div id="array-and-object" class="step slide" data-x="1500" data-y="-1500" data-rotate-y="10">
+			<h2>Array and object tools</h2>
+			<p><span>This fine gentelmens are also getting some honor</span></p>
+			<pre>
+				<code class="javascript">
+					<div>let array = [...[1,2,3,4,5], 6,7,8,9]</div>
+					<div>array.find(n => {return n > 5})</div>
+					<div>let a = 'foo',b = 'bar',object = {a,b}</div>
+					<div>let fn = ({a,b}) => {console.log(a)}</div>
+					<div>let fn1 = ({foo:bar}) => {console.log(foo)}</div>
+				</code>
+			</pre>
+		</div>
+	</div>
+	<script src="lib/impress.js-master/js/impress.js"></script>
+	<script src="lib/highlight/highlight.pack.js"></script>
+	<script>impress().init();</script>
+	<script>
+		'use strict';
+		[].forEach.call(document.getElementsByTagName('code'), function(element){
+			hljs.initHighlightingOnLoad(element);
+		});
+	</script>
+</body>
+</html>

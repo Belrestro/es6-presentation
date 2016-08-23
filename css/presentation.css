@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0; }
+
+body {
+  font-family: Roboto;
+  font-size: 60px;
+  background: #E9E9E9; }
+  body .slide {
+    text-align: left;
+    width: 1400px;
+    height: 700px;
+    padding: 40px 60px; }
+    body .slide h1,
+    body .slide h2,
+    body .slide h3,
+    body .slide h4,
+    body .slide h5,
+    body .slide h6 {
+      font-size: 90px; }
+    body .slide strong,
+    body .slide span,
+    body .slide p {
+      margin: 0;
+      font-size: 40px; }
+    body .slide span {
+      font-weight: 300; }
+    body .slide strong {
+      font-weight: 600; }
+    body .slide code,
+    body .slide code * {
+      font-size: 35px;
+      line-height: 15px; }
+    body .slide#welcome p {
+      font-size: 120px; }
+      body .slide#welcome p strong {
+        font-size: 200px; }
+    body .slide#welcome span {
+      font-size: 50px; }
+
+.text-center {
+  text-align: center; }
+
+/*# sourceMappingURL=presentation.css.map */
