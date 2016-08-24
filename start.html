@@ -20,9 +20,9 @@
 			<pre>
 				<code class="javascript">
 					<div>let it = 'be';</div>
-					<div>const PI = '3.14...'</div>
+					<div>const LIGHTSPEED = '299 792 458 m/s';</div>
 					<div>[a,b,c] = [1,2,3];</div>
-					<div>{a,b,c} = {a:1,b:2,c:3}</div>
+					<div>{a,b,c} = {a:1,b:2,c:3};</div>
 				</code>
 			</pre>
 		</div>
@@ -37,6 +37,7 @@
 					<div>  console.log(a); // a === true</div>
 					<div>}</div>
 					<div>console.log(a); // a === false</div>
+					<div>let a = true // Type Error a is alredy defined</div>
 				</code>
 			</pre>
 		</div>
@@ -110,7 +111,7 @@
 			</pre>
 		</div>
 		<div id="expression-bodies" class="step slide" data-x="4500" data-y="4500" data-rotate-y="30">
-			<h2>Expression Bodies and Statement bodies</h2>
+			<h2>Expression Bodies</h2>
 			<p><span>Big deal actually</span></p>
 			<pre>
 				<code class="javascript">
@@ -127,24 +128,105 @@
 			<h2>Statement bodies</h2>
 			<pre>
 				<code class="javascript">
-					<div>function condition(arg) {return Boolean(arg)};</div>
-					<div>{</div>
-					<div>	function condition(arg) {return !Boolean(arg)}</div>
+					<div>let fn = () => {</div>
+					<div>	//Code to write</div> 
 					<div>}</div>
-					<div>console.log(condition(1)); // true</div>
 				</code>
 			</pre>
 		</div>
-		<div id="array-and-object" class="step slide" data-x="1500" data-y="-1500" data-rotate-y="10">
-			<h2>Array and object tools</h2>
+		<div id="rest-argument" class="step slide" data-x="7500" data-y="7500" data-rotate-y="50">
+			<h2>Rest argument</h2>
+			<pre>
+				<code class="javascript">
+					<div>let sum = (...numbers) => {</div>
+					<div>	return numbers.reduce((a,b){</div>
+					<div>		return a+b;</div>
+					<div>	});</div>
+					<div>};</div>
+					<div>sum(1,2,3,4,5); // 15</div>
+					<div>let highest = (...numbers) => {</div>
+					<div>	return numbers.reduce((a,b) => {</div>
+					<div>		return Math.max(a,b);</div>
+					<div>	});</div>
+					<div>};</div>
+					<div>highest(1,2,3,4,-5); // 4</div>
+				</code>
+			</pre>
+		</div>
+		<div id="lexical-this" class="step slide" data-x="9000" data-y="9000" data-rotate-y="60">
+			<h2>Lexical this</h2>
+			<pre>
+				<code class="javascript">
+					<div>let f = function() {</div>
+					<div>	this.fives = [];</div>
+					<div>	this.fives.addFives = (...n) => {</div>
+					<div>		n.forEach(number=>{</div>
+					<div>			if(number === 5)</div>
+					<div>				this.fives.push(number);</div>
+					<div>		});</div>
+					<div>	}</div>
+					<div>}</div>
+					<div>new f().fives.addFives(1,4,5,'5','five',(6-1),(!NaN*5));</div>
+				</code>
+			</pre>
+		</div>
+		<div id="template-strings" class="step slide" data-x="1500" data-y="-1500" data-rotate-y="-10">
+			<h2>Template strings</h2>
+			<p><span>forget about ' and " hell</span></p>
+			<pre>
+				<code class="javascript">
+					<div>let name = 'Andrew';</div>
+					<div>let greet = 'Long time no see';</div>
+					<div>console.log(`Hi, ${name}, ${greet}.`);</div>
+				</code>
+			</pre>
+		</div>
+		<div id="template-strings-declaration" class="step slide" data-x="3000" data-y="-3000" data-rotate-y="-20">
+			<h2>Declaration strings</h2>
+			<pre>
+				<code class="javascript">
+					<div>let data = {url:'/',html:'to main'};</div>
+					<div>let a = `&lt;a href="${data.href}" &gt;${data.html}&lt;/a&gt;`;</div>
+					<div>// All spaces and new lines are saved</div>
+				</code>
+			<pre>
+		</div>
+		<div id="template-strings-tags" class="step slide" data-x="4500" data-y="-4500" data-rotate-y="-30">
+			<h2>Tags</h2>
+			<pre>
+				<code class="javascript">
+					<div>let name = 'John', surname = 'Doe';</div>
+					<div>let fullName = (_,...b) => {return `${b[1]} ${b[0]}`};</div>
+					<div>fullName`${name} ${surname}`;//Doe John</div>
+					<div>let clearName = (str, _) => {</div>
+					<div>	return `${str[0]} stranger ${str[1]}`;</div>
+					<div>}</div>
+					<div>clearName`Hello ${name} nice to meet you`;</div>
+					<div>// Hello stranger nice to meet you;</div>
+				</code>
+			</pre>
+		</div>		
+		<div id="Arrays-and-objects" class="step slide" data-x="-1500" data-y="1500" data-rotate-y="10">
+			<h2>Arrays and objects</h2>
 			<p><span>This fine gentelmens are also getting some honor</span></p>
 			<pre>
 				<code class="javascript">
 					<div>let array = [...[1,2,3,4,5], 6,7,8,9]</div>
 					<div>array.find(n => {return n > 5})</div>
-					<div>let a = 'foo',b = 'bar',object = {a,b}</div>
-					<div>let fn = ({a,b}) => {console.log(a)}</div>
-					<div>let fn1 = ({foo:bar}) => {console.log(foo)}</div>
+					<div>let a = 1, b =2;</div>
+					<div>let object = {a,b};<div>
+				</code>
+			</pre>
+		</div>
+		<div id="array-spread-operator" class="step slide" data-x="-3000" data-y="3000" data-rotate-y="20">
+			<h2>Spead operator</h2>
+			<p><span>This fine gentelmens are also getting some honor</span></p>
+			<pre>
+				<code class="javascript">
+					<div>let array = [...[1,2,3,4,5], 6,7,8,9]</div>
+					<div>array.find(n => {return n > 5})</div>
+					<div>let a = 1, b =2;</div>
+					<div>let object = {a,b};<div>
 				</code>
 			</pre>
 		</div>
