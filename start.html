@@ -104,7 +104,7 @@
 				<code class="javascript">
 					<div>function condition(arg) {return Boolean(arg)};</div>
 					<div>{</div>
-					<div>	function condition(arg) {return !Boolean(arg)}</div>
+					<div>  function condition(arg) {return !Boolean(arg)}</div>
 					<div>}</div>
 					<div>console.log(condition(1)); // true</div>
 				</code>
@@ -119,8 +119,8 @@
 					<div>let fn = a => {return a^2} // fn(2) -> 4</div>
 					<div>let fn = (a=1) => {return a^2} // fn() -> 1</div>
 					<div>[1,2,3,4,5].reduce((a,b)=>{return a+b}) // -> 15</div>
-					<div>let fn (a,...rest) => {return a.call(null, rest)}</div> 
-					<div>// fn(array=>{return array.length}, [1,2,3,4,5]) -> 5</div> 
+					<div>let fn (a,...rest) => a.apply(null, rest)</div> 
+					<div>// fn(array=> array.length , [1,2,3,4,5]) -> 5</div> 
 				</code>
 			</pre>
 		</div>
@@ -128,9 +128,12 @@
 			<h2>Statement bodies</h2>
 			<pre>
 				<code class="javascript">
-					<div>let fn = () => {</div>
-					<div>	//Code to write</div> 
+					<div>let fn = array => {</div>
+					<div>  return array.length</div> 
 					<div>}</div>
+					<div>fn([1,2,3]); // 3</div>
+					<div>let fn1 = a => a.length;</div>
+					<div>fn1([1,2,3]); // 3</div>
 				</code>
 			</pre>
 		</div>
@@ -139,15 +142,11 @@
 			<pre>
 				<code class="javascript">
 					<div>let sum = (...numbers) => {</div>
-					<div>	return numbers.reduce((a,b){</div>
-					<div>		return a+b;</div>
-					<div>	});</div>
+					<div>  return numbers.reduce((a,b) => a+b);</div>
 					<div>};</div>
 					<div>sum(1,2,3,4,5); // 15</div>
 					<div>let highest = (...numbers) => {</div>
-					<div>	return numbers.reduce((a,b) => {</div>
-					<div>		return Math.max(a,b);</div>
-					<div>	});</div>
+					<div>  return numbers.reduce((a,b) => Math.max(a,b) );</div>
 					<div>};</div>
 					<div>highest(1,2,3,4,-5); // 4</div>
 				</code>
@@ -158,15 +157,14 @@
 			<pre>
 				<code class="javascript">
 					<div>let f = function() {</div>
-					<div>	this.fives = [];</div>
-					<div>	this.fives.addFives = (...n) => {</div>
-					<div>		n.forEach(number=>{</div>
-					<div>			if(number === 5)</div>
-					<div>				this.fives.push(number);</div>
-					<div>		});</div>
-					<div>	}</div>
+					<div>  this.numbers = [1,4,5,'5','five',(6-1),(!NaN*5)];</div>
+					<div>  this.fives = [];</div>
+					<div>  this.numbers.forEach(n => {</div>
+					<div>  if(n === 5)</div>
+					<div>    this.fives.push(n);</div>
+					<div>  });</div>
 					<div>}</div>
-					<div>new f().fives.addFives(1,4,5,'5','five',(6-1),(!NaN*5));</div>
+					<div>let a = new f(); // a.fives.length === 3</div>
 				</code>
 			</pre>
 		</div>
@@ -182,7 +180,7 @@
 			</pre>
 		</div>
 		<div id="template-strings-declaration" class="step slide" data-x="3000" data-y="-3000" data-rotate-y="-20">
-			<h2>Declaration strings</h2>
+			<h2>Declaration</h2>
 			<pre>
 				<code class="javascript">
 					<div>let data = {url:'/',html:'to main'};</div>
@@ -196,11 +194,9 @@
 			<pre>
 				<code class="javascript">
 					<div>let name = 'John', surname = 'Doe';</div>
-					<div>let fullName = (_,...b) => {return `${b[1]} ${b[0]}`};</div>
+					<div>let fullName = (_,...b) =>  `${b[1]} ${b[0]}`;</div>
 					<div>fullName`${name} ${surname}`;//Doe John</div>
-					<div>let clearName = (str, _) => {</div>
-					<div>	return `${str[0]} stranger ${str[1]}`;</div>
-					<div>}</div>
+					<div>let clearName = (str, _) => `${str[0]} stranger ${str[1]}`;</div>
 					<div>clearName`Hello ${name} nice to meet you`;</div>
 					<div>// Hello stranger nice to meet you;</div>
 				</code>
@@ -208,25 +204,207 @@
 		</div>		
 		<div id="Arrays-and-objects" class="step slide" data-x="-1500" data-y="1500" data-rotate-y="10">
 			<h2>Arrays and objects</h2>
-			<p><span>This fine gentelmens are also getting some honor</span></p>
 			<pre>
 				<code class="javascript">
 					<div>let array = [...[1,2,3,4,5], 6,7,8,9]</div>
 					<div>array.find(n => {return n > 5})</div>
-					<div>let a = 1, b =2;</div>
+					<div>let a = 1, b = 2;</div>
 					<div>let object = {a,b};<div>
 				</code>
 			</pre>
 		</div>
 		<div id="array-spread-operator" class="step slide" data-x="-3000" data-y="3000" data-rotate-y="20">
 			<h2>Spead operator</h2>
-			<p><span>This fine gentelmens are also getting some honor</span></p>
+			<p><span>Simple yet usefull</span></p>
 			<pre>
 				<code class="javascript">
-					<div>let array = [...[1,2,3,4,5], 6,7,8,9]</div>
-					<div>array.find(n => {return n > 5})</div>
-					<div>let a = 1, b =2;</div>
-					<div>let object = {a,b};<div>
+					<div>let names = ['J','Q','K','A'];</div>
+					<div>let numbers = [2,3,4,5,6,7,8,9,10];</div>
+					<div>let deck = [...names, ...hearts];</div>
+					<div>console.log(deck)// [2,3,4,5,6,7,8,9,10,'J','Q','K','A']<div>
+				</code>
+			</pre>
+		</div>
+		<div id="array-from-method" class="step slide" data-x="-4500" data-y="4500" data-rotate-y="30">
+			<h2>Array from</h2>
+			<p><span>Use array like objects and literable objects</span></p>
+			<pre>
+				<code class="javascript">
+					<div>let a = document.getElementsByTagName('a');</div>
+					<div>typeof Array.from(a);</div>
+					<div>// 'array';</div>
+					<div>Array.from(a, a => a.innerText);</div>
+					<div>// Only text from nodes</div>
+					<div>Array.from(new Array(5), a => 'a');</div>
+					<div>// ['a','a','a','a','a']</div>
+				</code>
+			</pre>
+		</div>
+		<div id="array-find-method" class="step slide" data-x="-6000" data-y="6000" data-rotate-y="40">
+			<h2>Array find</h2>
+			<p><span>Finds a single element in array</span></p>
+			<pre>
+				<code class="javascript">
+					<div>let array = Array.from('abcd...');</div>
+					<div>array.find(letter => letter === 'b'); // b</div>
+					<div>array.find((letter, index) => array[index-1] == 'a'); // b</div>
+					<div>array.findIndex(letter => letter === 'b') // 2</div>
+				</code>
+			</pre>
+		</div>
+		<div id="object-literal" class="step slide" data-x="-7500" data-y="7500" data-rotate-y="50">
+			<h2>Object literal features</h2>
+			<p><span>Shorthand properties</span></p>
+			<pre>
+				<code class="javascript">
+					<div>let foo = 'bar';</div>
+					<div>let object = {foo}; // object.foo -> 'bar';</div>
+					<div>let object1 = {[foo]}; // object.foo -> undefined, object.bar -> 'bar'</div>
+					<div></div>
+					<div>let bar = 'bar';</div>
+					<div>let object3 = {[foo]} // Syntax error</div>
+				</code>
+			</pre>
+		</div>
+		<div id="object-methods" class="step slide" data-x="-9000" data-y="9000" data-rotate-y="60">
+			<h2>Object methods</h2>
+			<p><span>Shorthand methods</span></p>
+			<pre>
+				<code class="javascript">
+					<div>let smallNumber = {</div>
+					<div>  _number : 0,</div>
+					<div>  _max : 10,</div>
+					<div>  get number (){ return this._number; },</div>
+					<div>  set number (value) {</div>
+					<div>    return this._number = value > this._max ? this._number : value;</div>
+					<div>  }</div>
+					<div>  getMax () { this._max; }</div>
+					<div>}</div>
+					<div>smallNumber.number = 20;   // 10</div>
+					<div>smallNumber.getMax(10);   // 10</div>
+					<div>smallNumber.number = 5;  // 5</div>
+				</code>
+			</pre>
+		</div>
+		<div id="classes" class="step slide" data-x="0" data-y="12000" data-rotate-y="90" data-rotate-x="0">
+			<h2>Classes</h2>
+			<p><span>Looks different works the same</span></p>
+			<pre>
+				<code class="javascript">
+					<div>class Animal {</div>
+					<div>  constructor(type="mouse"){</div>
+					<div>    this.type = type; </div>
+					<div>  }</div>
+					<div>}</div>
+					<div>class Dog extends Animal {</div>
+					<div>  constructor(type){</div>
+					<div>    type = type ? `${type}-dog` : 'dog'; </div>
+					<div>    super(type);</div>
+					<div>  }</div>
+					<div>}</div>
+					<div>new Dog(); // {type:'dog'}</div>
+					<div>new Dog('cat'); // {type: 'cat-dog'}</div>
+				</code>
+			</pre>
+		</div>
+		<div id="classes-defenition" class="step slide" data-x="0" data-y="10500" data-rotate-y="90" data-rotate-x="0">
+			<h2>Defenition</h2>
+			<pre>
+				<code class="javascript">
+					<div>class Animal {</div>
+					<div>  constructor(type="mouse"){</div>
+					<div>    this.type = type;</div>
+					<div>  }</div>
+					<div>  transform (type){</div>
+					<div>    this.type = type;</div>
+					<div>  }</div>
+					<div>  static default(){</div>
+					<div>    let animals = ['mouse','pidgeon','cocaroach'];</div>
+					<div>    let type = animals[Math.floor(Math.random()*animals.length)];</div>
+					<div>    return new Animal(type);</div>
+					<div>  }</div>
+					<div>}</div>
+					<div>let cat = new Animal('cat'); // {type:'cat'}</div>
+					<div>cat.transtorm('dragon'); // {type:'dragon'}</div>
+					<div>Animal.default(); // {type:'pidgeon'}</div>
+				</code>
+			</pre>
+		</div>
+		<div id="classes-inheritance" class="step slide" data-x="0" data-y="9000" data-rotate-y="90" data-rotate-x="0">
+			<h2>Inheritance</h2>
+			<pre>
+				<code class="javascript">
+					<div>class Dog extends Animal {</div>
+					<div>  constructor(type) {</div>
+					<div>    type = type ? `${type}-dog` : 'dog';</div>
+					<div>    super(type);</div>
+					<div>  }</div>
+					<div>  transform (type){</div>
+					<div>    super.transform(`${type}-dog`)</div>
+					<div>  }</div>
+					<div>}</div>
+					<div>let dog = new Dog('cat'); // {type:'cat-dog'}</div>
+					<div>dog.transform('dragon'); // {type:'dragon-dog'}</div>
+				</code>
+			</pre>
+		</div>
+		<div id="classes-get-set" class="step slide" data-x="0" data-y="7500" data-rotate-y="90" data-rotate-x="0">
+			<h2>Getters and Setters</h2>
+			<pre>
+				<code class="javascript">
+					<div>class BattleDog extends Animal {</div>
+					<div>  constructor(name="war-dog"){</div>
+					<div>    super('battle');</div>
+					<div>    this.name = name;</div>
+					<div>    this._stats = { hp:'5', dmg:'2', speed:'3' };</div>
+					<div>  }</div>
+					<div>  get stats () {</div>
+					<div>    return this._stats;</div>
+					<div>  }</div>
+					<div>  set hp(val){ this._stats.hp = val; }</div>
+					<div>  set dmg(val) { this._stats.dmg = val; }</div>
+					<div>  set speed(val) { this._stats.speed = val; }</div>
+					<div>}</div>
+					<div>let warrior1 = new BattleDog();</div>
+					<div>warrior1.hp = 6; //</div>
+				</code>
+			</pre>
+		</div>
+		<div id="modules" class="step slide" data-x="0" data-y="5000" data-rotate-y="90" data-rotate-x="0">
+			<h2>Modules</h2>
+			<p><span>Common js like modules</span></p>
+			<pre>
+				<code class="javascript">
+					<div>// lib/somemodule.js</div>
+					<div>class Grid {</div>
+					<div>  constructor(width, height){</div>
+					<div>    this.space = Array.form(new Array(width*height), () => null);</div>
+					<div>    this.widht = width;</div>
+					<div>    this.height = height;</div>
+					<div>  }</div>
+					<div>}</div>
+					<div>export Grid;</div>
+					<div>// somefile.js</div>
+					<div>import Grid as Grid from 'lib/somemodule';</div>
+					<div>new Grid(10,10);</div>
+				</code>
+			</pre>
+		</div>
+		<div id="modules-usadge" class="step slide" data-x="0" data-y="3000" data-rotate-y="90" data-rotate-x="0">
+			<h2>Usadge</h2>
+			<p><span>different ways to export things</span></p>
+			<pre>
+				<code class="javascript">
+					<div>// lib/somemodule.js</div>
+					<div>export dogee = 'So much export';</div>
+					<div>// lib/someothermodule.js</div>
+					<div>export * from 'lib/somemodule.js';</div>
+					<div>export good 'Easy cheasy';</div>
+					<div>// somefile.js</div>
+					<div>import * as module from 'someothermodule.js';</div>
+					<div>module.dogee // -> So much export</div>
+					<div>import {good} from 'someothermodule.js';</div>
+					<div>good // -> Easy cheasy</div>
 				</code>
 			</pre>
 		</div>

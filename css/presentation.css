@@ -24,15 +24,15 @@ body {
     body .slide span,
     body .slide p {
       margin: 0;
-      font-size: 40px; }
+      font-size: 35px; }
     body .slide span {
       font-weight: 300; }
     body .slide strong {
       font-weight: 600; }
     body .slide code,
     body .slide code * {
-      font-size: 35px;
-      line-height: 15px; }
+      font-size: 30px;
+      line-height: 12px; }
     body .slide#welcome p {
       font-size: 120px; }
       body .slide#welcome p strong {

@@ -13,6 +13,16 @@
 3 - Template strings
   3.1 - Declaraion and usadge
   3.2 - Tagging
-4 - Objects and Arrays
-  4.1 - Array spread operator
-  //4.2 - Array find
+4 - Arrays
+  4.1 - Spread operator
+  4.2 - From
+  4.3 - Find
+5 - Objects
+  5.1 - Properties
+  5.2 - Methods
+6 - Classess
+  6.1 - Defenition
+  6.2 - Inheritance
+  6.3 - Getters and Setters
+7 - Modules
+  7.1 - Usadge
